@@ -1,0 +1,1539 @@
+file 1879221 1711177619                                         
+version 3
+run General-0-20240323-01:06:54-13196
+attr configname General
+attr datetime 20240323-01:06:54
+attr datetimef 20240323-010654
+attr experiment General
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvarsd ""
+attr iterationvarsf ""
+attr measurement ""
+attr network Network
+attr processid 13196
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+config image-path ../inet4.4/images
+config network Network
+config sim-time-limit 600s
+config *.server.numApps 1
+config *.server.app[0].typename TcpGenericServerApp
+config *.server.app[0].localAddress "\"server\""
+config *.server.app[0].localPort 10021
+config *.server.app[0].replyDelay 1s
+config *.FTP.numApps 1
+config *.FTP.app[0].typename TcpBasicClientApp
+config *.FTP.app[0].connectAddress "\"server\""
+config *.FTP.app[0].connectPort 21
+config *.FTP.app[0].requestLength 1B*int(truncnormal(20,5))
+config *.FTP.app[0].replyLength 1B*int(exponential(1000000))
+config *.FTP.app[0].numRequestsPerSession int(exponential(3))
+config *.FTP.app[0].thinkTime 1s
+config *.FTP.app[0].idleInterval 20s
+
+vector 0 Network.client.eth[0].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 1 Network.client.eth[0].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 2 Network.client.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 3 Network.client.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 4 Network.client.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 5 Network.server.eth[0].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 6 Network.server.eth[0].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 7 Network.server.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 8 Network.server.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 9 Network.server.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 10 Network.ethernetSwitch.eth[0].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 11 Network.ethernetSwitch.eth[0].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 12 Network.ethernetSwitch.eth[1].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 13 Network.ethernetSwitch.eth[1].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 14 Network.ethernetSwitch.eth[2].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 15 Network.ethernetSwitch.eth[2].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 16 Network.ethernetSwitch.eth[3].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 17 Network.ethernetSwitch.eth[3].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 18 Network.FTP.eth[0].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 19 Network.FTP.eth[0].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 20 Network.FTP.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 21 Network.FTP.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 22 Network.FTP.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 23 Network.FTP.app[0] numActiveSessions:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source warmup(sum(connect))
+attr title "number of active sessions"
+vector 24 Network.HTTP.eth[0].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 25 Network.HTTP.eth[0].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 26 Network.HTTP.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 27 Network.HTTP.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 28 Network.HTTP.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 29 Network.FTP.tcp.conn-2 tcpRcvQueueBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 30 Network.FTP.tcp.conn-2 rcvAdv:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 31 Network.FTP.tcp.conn-2 rcvWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 32 Network.FTP.tcp.conn-2 sndAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 33 Network.FTP.ipv4.arp arpRequestSent:vector(packetBytes) ETV
+attr recordingmode vector(packetBytes)
+attr source arpRequestSent
+attr title "ARP request sent, packetBytes"
+vector 34 Network.FTP.ethernet encapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source encapPk
+attr title "packets encapsulated, packetBytes"
+vector 35 Network.FTP.eth[0].queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 36 Network.FTP.eth[0].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 37 Network.FTP.eth[0].queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 38 Network.FTP.eth[0].queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 39 Network.FTP.eth[0].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 40 Network.FTP.eth[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, packetBytes"
+vector 41 Network.FTP.eth[0].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToLower
+attr title "packets transmitted, packetBytes"
+vector 42 Network.ethernetSwitch.eth[2].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source rxPkOk
+attr title "packets received OK, packetBytes"
+vector 43 Network.ethernetSwitch.eth[2].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 44 Network.ethernetSwitch.ethernet decapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source decapPk
+attr title "packets decapsulated, packetBytes"
+vector 45 Network.ethernetSwitch.ethernet encapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source encapPk
+attr title "packets encapsulated, packetBytes"
+vector 46 Network.ethernetSwitch.eth[0].queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 47 Network.ethernetSwitch.eth[0].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 48 Network.ethernetSwitch.eth[0].queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 49 Network.ethernetSwitch.eth[0].queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 50 Network.ethernetSwitch.eth[0].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 51 Network.ethernetSwitch.eth[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, packetBytes"
+vector 52 Network.ethernetSwitch.eth[1].queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 53 Network.ethernetSwitch.eth[1].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 54 Network.ethernetSwitch.eth[1].queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 55 Network.ethernetSwitch.eth[1].queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 56 Network.ethernetSwitch.eth[1].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 57 Network.ethernetSwitch.eth[1].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, packetBytes"
+vector 58 Network.ethernetSwitch.eth[3].queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 59 Network.ethernetSwitch.eth[3].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 60 Network.ethernetSwitch.eth[3].queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 61 Network.ethernetSwitch.eth[3].queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 62 Network.ethernetSwitch.eth[3].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 63 Network.ethernetSwitch.eth[3].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, packetBytes"
+vector 64 Network.ethernetSwitch.eth[0].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToLower
+attr title "packets transmitted, packetBytes"
+vector 65 Network.ethernetSwitch.eth[1].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToLower
+attr title "packets transmitted, packetBytes"
+vector 66 Network.ethernetSwitch.eth[3].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToLower
+attr title "packets transmitted, packetBytes"
+vector 67 Network.client.eth[0].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source rxPkOk
+attr title "packets received OK, packetBytes"
+vector 68 Network.client.eth[0].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 69 Network.server.eth[0].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source rxPkOk
+attr title "packets received OK, packetBytes"
+vector 70 Network.server.eth[0].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 71 Network.HTTP.eth[0].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source rxPkOk
+attr title "packets received OK, packetBytes"
+vector 72 Network.HTTP.eth[0].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 73 Network.client.ethernet decapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source decapPk
+attr title "packets decapsulated, packetBytes"
+vector 74 Network.server.ethernet decapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source decapPk
+attr title "packets decapsulated, packetBytes"
+vector 75 Network.HTTP.ethernet decapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source decapPk
+attr title "packets decapsulated, packetBytes"
+vector 76 Network.server.ipv4.arp arpReplySent:vector(packetBytes) ETV
+attr recordingmode vector(packetBytes)
+attr source arpReplySent
+attr title "ARP replies sent, packetBytes"
+vector 77 Network.server.ethernet encapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source encapPk
+attr title "packets encapsulated, packetBytes"
+vector 78 Network.server.eth[0].queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 79 Network.server.eth[0].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 80 Network.server.eth[0].queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 81 Network.server.eth[0].queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 82 Network.server.eth[0].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 83 Network.server.eth[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, packetBytes"
+vector 84 Network.server.eth[0].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToLower
+attr title "packets transmitted, packetBytes"
+vector 85 Network.ethernetSwitch.eth[1].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source rxPkOk
+attr title "packets received OK, packetBytes"
+vector 86 Network.ethernetSwitch.eth[1].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 87 Network.ethernetSwitch.eth[2].queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 88 Network.ethernetSwitch.eth[2].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 89 Network.ethernetSwitch.eth[2].queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 90 Network.ethernetSwitch.eth[2].queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 91 Network.ethernetSwitch.eth[2].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 92 Network.ethernetSwitch.eth[2].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, packetBytes"
+vector 93 Network.ethernetSwitch.eth[2].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToLower
+attr title "packets transmitted, packetBytes"
+vector 94 Network.FTP.eth[0].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source rxPkOk
+attr title "packets received OK, packetBytes"
+vector 95 Network.FTP.eth[0].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 96 Network.FTP.ethernet decapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source decapPk
+attr title "packets decapsulated, packetBytes"
+vector 97 Network.FTP.tcp.conn-2 rcvSeq:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 98 Network.FTP.tcp.conn-2 rcvAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 99 Network.FTP.tcp.conn-2 tcpRcvPayloadBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+99	24976 21 77 77 1.000012608 1.000012608 1 0 0 0 0
+29	24997 10 3 3 1 1 1 0 0 0 0
+98	25007 26 77 77 1.000012608 1.000012608 1 250001 250001 250001 62500500001
+97	25033 21 77 77 1.000012608 1.000012608 1 0 0 0 0
+32	25054 10 3 3 1 1 1 0 0 0 0
+30	25064 13 3 3 1 1 1 7504 7504 7504 56310016
+31	25077 13 3 3 1 1 1 7504 7504 7504 56310016
+vector 100 Network.FTP.tcp.conn-3 tcpRcvQueueBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 101 Network.FTP.tcp.conn-3 rcvAdv:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 102 Network.FTP.tcp.conn-3 rcvWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 103 Network.FTP.tcp.conn-3 sndAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 104 Network.FTP.tcp.conn-3 rcvSeq:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 105 Network.FTP.tcp.conn-3 rcvAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 106 Network.FTP.tcp.conn-3 tcpRcvPayloadBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+106	25924 24 113 113 21.000018912 21.000018912 1 0 0 0 0
+100	25948 23 81 81 21.000012608 21.000012608 1 0 0 0 0
+105	25971 30 113 113 21.000018912 21.000018912 1 5250004 5250004 5250004 27562542000016
+104	26001 24 113 113 21.000018912 21.000018912 1 0 0 0 0
+103	26025 23 81 81 21.000012608 21.000012608 1 0 0 0 0
+101	26048 26 81 81 21.000012608 21.000012608 1 7504 7504 7504 56310016
+102	26074 26 81 81 21.000012608 21.000012608 1 7504 7504 7504 56310016
+vector 107 Network.FTP.tcp.conn-4 tcpRcvQueueBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 108 Network.FTP.tcp.conn-4 rcvAdv:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 109 Network.FTP.tcp.conn-4 rcvWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 110 Network.FTP.tcp.conn-4 sndAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 111 Network.FTP.tcp.conn-4 rcvSeq:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 112 Network.FTP.tcp.conn-4 rcvAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 113 Network.FTP.tcp.conn-4 tcpRcvPayloadBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+113	26934 24 149 149 41.000025216 41.000025216 1 0 0 0 0
+107	26958 24 117 117 41.000018912 41.000018912 1 0 0 0 0
+112	26982 31 149 149 41.000025216 41.000025216 1 10250005 10250005 10250005 1.0506260250002e+14
+111	27013 24 149 149 41.000025216 41.000025216 1 0 0 0 0
+110	27037 24 117 117 41.000018912 41.000018912 1 0 0 0 0
+108	27061 27 117 117 41.000018912 41.000018912 1 7504 7504 7504 56310016
+109	27088 27 117 117 41.000018912 41.000018912 1 7504 7504 7504 56310016
+vector 114 Network.FTP.tcp.conn-5 tcpRcvQueueBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 115 Network.FTP.tcp.conn-5 rcvAdv:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 116 Network.FTP.tcp.conn-5 rcvWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 117 Network.FTP.tcp.conn-5 sndAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 118 Network.FTP.tcp.conn-5 rcvSeq:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 119 Network.FTP.tcp.conn-5 rcvAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 120 Network.FTP.tcp.conn-5 tcpRcvPayloadBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+120	27949 23 185 185 61.00003152 61.00003152 1 0 0 0 0
+114	27972 24 153 153 61.000025216 61.000025216 1 0 0 0 0
+119	27996 30 185 185 61.00003152 61.00003152 1 15250007 15250007 15250007 2.3256271350005e+14
+118	28026 23 185 185 61.00003152 61.00003152 1 0 0 0 0
+117	28049 24 153 153 61.000025216 61.000025216 1 0 0 0 0
+115	28073 27 153 153 61.000025216 61.000025216 1 7504 7504 7504 56310016
+116	28100 27 153 153 61.000025216 61.000025216 1 7504 7504 7504 56310016
+vector 121 Network.FTP.tcp.conn-6 tcpRcvQueueBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 122 Network.FTP.tcp.conn-6 rcvAdv:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 123 Network.FTP.tcp.conn-6 rcvWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 124 Network.FTP.tcp.conn-6 sndAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 125 Network.FTP.tcp.conn-6 rcvSeq:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 126 Network.FTP.tcp.conn-6 rcvAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 127 Network.FTP.tcp.conn-6 tcpRcvPayloadBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+127	28961 24 221 221 81.000037824 81.000037824 1 0 0 0 0
+121	28985 23 189 189 81.00003152 81.00003152 1 0 0 0 0
+126	29008 31 221 221 81.000037824 81.000037824 1 20250008 20250008 20250008 4.1006282400006e+14
+125	29039 24 221 221 81.000037824 81.000037824 1 0 0 0 0
+124	29063 23 189 189 81.00003152 81.00003152 1 0 0 0 0
+122	29086 26 189 189 81.00003152 81.00003152 1 7504 7504 7504 56310016
+123	29112 26 189 189 81.00003152 81.00003152 1 7504 7504 7504 56310016
+vector 128 Network.FTP.tcp.conn-7 tcpRcvQueueBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 129 Network.FTP.tcp.conn-7 rcvAdv:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 130 Network.FTP.tcp.conn-7 rcvWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 131 Network.FTP.tcp.conn-7 sndAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 132 Network.FTP.tcp.conn-7 rcvSeq:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 133 Network.FTP.tcp.conn-7 rcvAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 134 Network.FTP.tcp.conn-7 tcpRcvPayloadBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+134	29972 25 257 257 101.000044128 101.000044128 1 0 0 0 0
+128	29997 25 225 225 101.000037824 101.000037824 1 0 0 0 0
+133	30022 32 257 257 101.000044128 101.000044128 1 25250010 25250010 25250010 6.375630050001e+14
+132	30054 25 257 257 101.000044128 101.000044128 1 0 0 0 0
+131	30079 25 225 225 101.000037824 101.000037824 1 0 0 0 0
+129	30104 28 225 225 101.000037824 101.000037824 1 7504 7504 7504 56310016
+130	30132 28 225 225 101.000037824 101.000037824 1 7504 7504 7504 56310016
+vector 135 Network.FTP.tcp.conn-8 tcpRcvQueueBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 136 Network.FTP.tcp.conn-8 rcvAdv:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 137 Network.FTP.tcp.conn-8 rcvWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 138 Network.FTP.tcp.conn-8 sndAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 139 Network.FTP.tcp.conn-8 rcvSeq:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 140 Network.FTP.tcp.conn-8 rcvAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 141 Network.FTP.tcp.conn-8 tcpRcvPayloadBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+141	30994 25 335 335 121.000056736 121.000056736 1 0 0 0 0
+135	31019 25 261 261 121.000044128 121.000044128 1 0 0 0 0
+140	31044 32 335 335 121.000056736 121.000056736 1 30250012 30250012 30250012 9.1506322600014e+14
+139	31076 25 335 335 121.000056736 121.000056736 1 0 0 0 0
+138	31101 25 261 261 121.000044128 121.000044128 1 0 0 0 0
+136	31126 28 261 261 121.000044128 121.000044128 1 7504 7504 7504 56310016
+137	31154 28 261 261 121.000044128 121.000044128 1 7504 7504 7504 56310016
+vector 142 Network.FTP.tcp.conn-9 tcpRcvQueueBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 143 Network.FTP.tcp.conn-9 rcvAdv:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 144 Network.FTP.tcp.conn-9 rcvWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 145 Network.FTP.tcp.conn-9 sndAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 146 Network.FTP.tcp.conn-9 rcvSeq:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 147 Network.FTP.tcp.conn-9 rcvAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 148 Network.FTP.tcp.conn-9 tcpRcvPayloadBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+148	32016 24 371 371 141.00006304 141.00006304 1 0 0 0 0
+142	32040 25 339 339 141.000056736 141.000056736 1 0 0 0 0
+147	32065 31 371 371 141.00006304 141.00006304 1 35250015 35250015 35250015 1.2425635575002e+15
+146	32096 24 371 371 141.00006304 141.00006304 1 0 0 0 0
+145	32120 25 339 339 141.000056736 141.000056736 1 0 0 0 0
+143	32145 28 339 339 141.000056736 141.000056736 1 7504 7504 7504 56310016
+144	32173 28 339 339 141.000056736 141.000056736 1 7504 7504 7504 56310016
+vector 149 Network.FTP.tcp.conn-10 tcpRcvQueueBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 150 Network.FTP.tcp.conn-10 rcvAdv:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 151 Network.FTP.tcp.conn-10 rcvWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 152 Network.FTP.tcp.conn-10 sndAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 153 Network.FTP.tcp.conn-10 rcvSeq:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 154 Network.FTP.tcp.conn-10 rcvAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 155 Network.FTP.tcp.conn-10 tcpRcvPayloadBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+155	33042 25 407 407 161.000069344 161.000069344 1 0 0 0 0
+149	33067 24 375 375 161.00006304 161.00006304 1 0 0 0 0
+154	33091 32 407 407 161.000069344 161.000069344 1 40250016 40250016 40250016 1.6200637880003e+15
+153	33123 25 407 407 161.000069344 161.000069344 1 0 0 0 0
+152	33148 24 375 375 161.00006304 161.00006304 1 0 0 0 0
+150	33172 27 375 375 161.00006304 161.00006304 1 7504 7504 7504 56310016
+151	33199 27 375 375 161.00006304 161.00006304 1 7504 7504 7504 56310016
+vector 156 Network.FTP.tcp.conn-11 tcpRcvQueueBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 157 Network.FTP.tcp.conn-11 rcvAdv:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 158 Network.FTP.tcp.conn-11 rcvWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 159 Network.FTP.tcp.conn-11 sndAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 160 Network.FTP.tcp.conn-11 rcvSeq:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 161 Network.FTP.tcp.conn-11 rcvAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 162 Network.FTP.tcp.conn-11 tcpRcvPayloadBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+162	34067 25 443 443 181.000075648 181.000075648 1 0 0 0 0
+156	34092 25 411 411 181.000069344 181.000069344 1 0 0 0 0
+161	34117 32 443 443 181.000075648 181.000075648 1 45250018 45250018 45250018 2.0475641290003e+15
+160	34149 25 443 443 181.000075648 181.000075648 1 0 0 0 0
+159	34174 25 411 411 181.000069344 181.000069344 1 0 0 0 0
+157	34199 28 411 411 181.000069344 181.000069344 1 7504 7504 7504 56310016
+158	34227 28 411 411 181.000069344 181.000069344 1 7504 7504 7504 56310016
+vector 163 Network.FTP.tcp.conn-12 tcpRcvQueueBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 164 Network.FTP.tcp.conn-12 rcvAdv:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 165 Network.FTP.tcp.conn-12 rcvWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 166 Network.FTP.tcp.conn-12 sndAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 167 Network.FTP.tcp.conn-12 rcvSeq:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 168 Network.FTP.tcp.conn-12 rcvAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 169 Network.FTP.tcp.conn-12 tcpRcvPayloadBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+169	35096 25 479 479 201.000081952 201.000081952 1 0 0 0 0
+163	35121 25 447 447 201.000075648 201.000075648 1 0 0 0 0
+168	35146 32 479 479 201.000081952 201.000081952 1 50250019 50250019 50250019 2.5250644095004e+15
+167	35178 25 479 479 201.000081952 201.000081952 1 0 0 0 0
+166	35203 25 447 447 201.000075648 201.000075648 1 0 0 0 0
+164	35228 28 447 447 201.000075648 201.000075648 1 7504 7504 7504 56310016
+165	35256 28 447 447 201.000075648 201.000075648 1 7504 7504 7504 56310016
+vector 170 Network.FTP.tcp.conn-13 tcpRcvQueueBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 171 Network.FTP.tcp.conn-13 rcvAdv:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 172 Network.FTP.tcp.conn-13 rcvWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 173 Network.FTP.tcp.conn-13 sndAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 174 Network.FTP.tcp.conn-13 rcvSeq:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 175 Network.FTP.tcp.conn-13 rcvAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 176 Network.FTP.tcp.conn-13 tcpRcvPayloadBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+176	36125 25 515 515 221.000088256 221.000088256 1 0 0 0 0
+170	36150 25 483 483 221.000081952 221.000081952 1 0 0 0 0
+175	36175 32 515 515 221.000088256 221.000088256 1 55250021 55250021 55250021 3.0525648205004e+15
+174	36207 25 515 515 221.000088256 221.000088256 1 0 0 0 0
+173	36232 25 483 483 221.000081952 221.000081952 1 0 0 0 0
+171	36257 28 483 483 221.000081952 221.000081952 1 7504 7504 7504 56310016
+172	36285 28 483 483 221.000081952 221.000081952 1 7504 7504 7504 56310016
+vector 177 Network.FTP.tcp.conn-14 tcpRcvQueueBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 178 Network.FTP.tcp.conn-14 rcvAdv:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 179 Network.FTP.tcp.conn-14 rcvWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 180 Network.FTP.tcp.conn-14 sndAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 181 Network.FTP.tcp.conn-14 rcvSeq:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 182 Network.FTP.tcp.conn-14 rcvAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 183 Network.FTP.tcp.conn-14 tcpRcvPayloadBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+183	37154 25 593 593 241.000100864 241.000100864 1 0 0 0 0
+177	37179 25 519 519 241.000088256 241.000088256 1 0 0 0 0
+182	37204 32 593 593 241.000100864 241.000100864 1 60250023 60250023 60250023 3.6300652715005e+15
+181	37236 25 593 593 241.000100864 241.000100864 1 0 0 0 0
+180	37261 25 519 519 241.000088256 241.000088256 1 0 0 0 0
+178	37286 28 519 519 241.000088256 241.000088256 1 7504 7504 7504 56310016
+179	37314 28 519 519 241.000088256 241.000088256 1 7504 7504 7504 56310016
+vector 184 Network.FTP.tcp.conn-15 tcpRcvQueueBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 185 Network.FTP.tcp.conn-15 rcvAdv:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 186 Network.FTP.tcp.conn-15 rcvWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 187 Network.FTP.tcp.conn-15 sndAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 188 Network.FTP.tcp.conn-15 rcvSeq:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 189 Network.FTP.tcp.conn-15 rcvAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 190 Network.FTP.tcp.conn-15 tcpRcvPayloadBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+190	38183 25 629 629 261.000107168 261.000107168 1 0 0 0 0
+184	38208 25 597 597 261.000100864 261.000100864 1 0 0 0 0
+189	38233 32 629 629 261.000107168 261.000107168 1 65250026 65250026 65250026 4.2575658930007e+15
+188	38265 25 629 629 261.000107168 261.000107168 1 0 0 0 0
+187	38290 25 597 597 261.000100864 261.000100864 1 0 0 0 0
+185	38315 28 597 597 261.000100864 261.000100864 1 7504 7504 7504 56310016
+186	38343 28 597 597 261.000100864 261.000100864 1 7504 7504 7504 56310016
+vector 191 Network.FTP.tcp.conn-16 tcpRcvQueueBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 192 Network.FTP.tcp.conn-16 rcvAdv:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 193 Network.FTP.tcp.conn-16 rcvWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 194 Network.FTP.tcp.conn-16 sndAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 195 Network.FTP.tcp.conn-16 rcvSeq:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 196 Network.FTP.tcp.conn-16 rcvAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 197 Network.FTP.tcp.conn-16 tcpRcvPayloadBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+197	39212 25 665 665 281.000113472 281.000113472 1 0 0 0 0
+191	39237 25 633 633 281.000107168 281.000107168 1 0 0 0 0
+196	39262 32 665 665 281.000113472 281.000113472 1 70250027 70250027 70250027 4.9350662935007e+15
+195	39294 25 665 665 281.000113472 281.000113472 1 0 0 0 0
+194	39319 25 633 633 281.000107168 281.000107168 1 0 0 0 0
+192	39344 28 633 633 281.000107168 281.000107168 1 7504 7504 7504 56310016
+193	39372 28 633 633 281.000107168 281.000107168 1 7504 7504 7504 56310016
+vector 198 Network.FTP.tcp.conn-17 tcpRcvQueueBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 199 Network.FTP.tcp.conn-17 rcvAdv:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 200 Network.FTP.tcp.conn-17 rcvWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 201 Network.FTP.tcp.conn-17 sndAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 202 Network.FTP.tcp.conn-17 rcvSeq:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 203 Network.FTP.tcp.conn-17 rcvAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 204 Network.FTP.tcp.conn-17 tcpRcvPayloadBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+204	40241 25 701 701 301.000119776 301.000119776 1 0 0 0 0
+198	40266 25 669 669 301.000113472 301.000113472 1 0 0 0 0
+203	40291 32 701 701 301.000119776 301.000119776 1 75250029 75250029 75250029 5.6625668645008e+15
+202	40323 25 701 701 301.000119776 301.000119776 1 0 0 0 0
+201	40348 25 669 669 301.000113472 301.000113472 1 0 0 0 0
+199	40373 28 669 669 301.000113472 301.000113472 1 7504 7504 7504 56310016
+200	40401 28 669 669 301.000113472 301.000113472 1 7504 7504 7504 56310016
+vector 205 Network.FTP.tcp.conn-18 tcpRcvQueueBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 206 Network.FTP.tcp.conn-18 rcvAdv:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 207 Network.FTP.tcp.conn-18 rcvWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 208 Network.FTP.tcp.conn-18 sndAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 209 Network.FTP.tcp.conn-18 rcvSeq:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 210 Network.FTP.tcp.conn-18 rcvAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 211 Network.FTP.tcp.conn-18 tcpRcvPayloadBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+211	41270 24 737 737 321.00012608 321.00012608 1 0 0 0 0
+205	41294 25 705 705 321.000119776 321.000119776 1 0 0 0 0
+210	41319 31 737 737 321.00012608 321.00012608 1 80250030 80250030 80250030 6.4400673150009e+15
+209	41350 24 737 737 321.00012608 321.00012608 1 0 0 0 0
+208	41374 25 705 705 321.000119776 321.000119776 1 0 0 0 0
+206	41399 28 705 705 321.000119776 321.000119776 1 7504 7504 7504 56310016
+207	41427 28 705 705 321.000119776 321.000119776 1 7504 7504 7504 56310016
+vector 212 Network.FTP.tcp.conn-19 tcpRcvQueueBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 213 Network.FTP.tcp.conn-19 rcvAdv:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 214 Network.FTP.tcp.conn-19 rcvWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 215 Network.FTP.tcp.conn-19 sndAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 216 Network.FTP.tcp.conn-19 rcvSeq:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 217 Network.FTP.tcp.conn-19 rcvAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 218 Network.FTP.tcp.conn-19 tcpRcvPayloadBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+218	42296 25 773 773 341.000132384 341.000132384 1 0 0 0 0
+212	42321 24 741 741 341.00012608 341.00012608 1 0 0 0 0
+217	42345 32 773 773 341.000132384 341.000132384 1 85250032 85250032 85250032 7.267567956001e+15
+216	42377 25 773 773 341.000132384 341.000132384 1 0 0 0 0
+215	42402 24 741 741 341.00012608 341.00012608 1 0 0 0 0
+213	42426 27 741 741 341.00012608 341.00012608 1 7504 7504 7504 56310016
+214	42453 27 741 741 341.00012608 341.00012608 1 7504 7504 7504 56310016
+vector 219 Network.FTP.tcp.conn-20 tcpRcvQueueBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 220 Network.FTP.tcp.conn-20 rcvAdv:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 221 Network.FTP.tcp.conn-20 rcvWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 222 Network.FTP.tcp.conn-20 sndAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 223 Network.FTP.tcp.conn-20 rcvSeq:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 224 Network.FTP.tcp.conn-20 rcvAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 225 Network.FTP.tcp.conn-20 tcpRcvPayloadBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+225	43321 25 851 851 361.000144992 361.000144992 1 0 0 0 0
+219	43346 25 777 777 361.000132384 361.000132384 1 0 0 0 0
+224	43371 32 851 851 361.000144992 361.000144992 1 90250034 90250034 90250034 8.1450686370012e+15
+223	43403 25 851 851 361.000144992 361.000144992 1 0 0 0 0
+222	43428 25 777 777 361.000132384 361.000132384 1 0 0 0 0
+220	43453 28 777 777 361.000132384 361.000132384 1 7504 7504 7504 56310016
+221	43481 28 777 777 361.000132384 361.000132384 1 7504 7504 7504 56310016
+vector 226 Network.FTP.tcp.conn-21 tcpRcvQueueBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 227 Network.FTP.tcp.conn-21 rcvAdv:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 228 Network.FTP.tcp.conn-21 rcvWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 229 Network.FTP.tcp.conn-21 sndAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 230 Network.FTP.tcp.conn-21 rcvSeq:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 231 Network.FTP.tcp.conn-21 rcvAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 232 Network.FTP.tcp.conn-21 tcpRcvPayloadBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+232	44350 25 887 887 381.000151296 381.000151296 1 0 0 0 0
+226	44375 25 855 855 381.000144992 381.000144992 1 0 0 0 0
+231	44400 32 887 887 381.000151296 381.000151296 1 95250037 95250037 95250037 9.0725695485014e+15
+230	44432 25 887 887 381.000151296 381.000151296 1 0 0 0 0
+229	44457 25 855 855 381.000144992 381.000144992 1 0 0 0 0
+227	44482 28 855 855 381.000144992 381.000144992 1 7504 7504 7504 56310016
+228	44510 28 855 855 381.000144992 381.000144992 1 7504 7504 7504 56310016
+vector 233 Network.FTP.tcp.conn-22 tcpRcvQueueBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 234 Network.FTP.tcp.conn-22 rcvAdv:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 235 Network.FTP.tcp.conn-22 rcvWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 236 Network.FTP.tcp.conn-22 sndAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 237 Network.FTP.tcp.conn-22 rcvSeq:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 238 Network.FTP.tcp.conn-22 rcvAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 239 Network.FTP.tcp.conn-22 tcpRcvPayloadBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+239	45379 23 923 923 401.0001576 401.0001576 1 0 0 0 0
+233	45402 25 891 891 401.000151296 401.000151296 1 0 0 0 0
+238	45427 31 923 923 401.0001576 401.0001576 1 100250038 100250038 100250038 1.0050070119001e+16
+237	45458 23 923 923 401.0001576 401.0001576 1 0 0 0 0
+236	45481 25 891 891 401.000151296 401.000151296 1 0 0 0 0
+234	45506 28 891 891 401.000151296 401.000151296 1 7504 7504 7504 56310016
+235	45534 28 891 891 401.000151296 401.000151296 1 7504 7504 7504 56310016
+vector 240 Network.FTP.tcp.conn-23 tcpRcvQueueBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 241 Network.FTP.tcp.conn-23 rcvAdv:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 242 Network.FTP.tcp.conn-23 rcvWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 243 Network.FTP.tcp.conn-23 sndAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 244 Network.FTP.tcp.conn-23 rcvSeq:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 245 Network.FTP.tcp.conn-23 rcvAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 246 Network.FTP.tcp.conn-23 tcpRcvPayloadBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+246	46403 25 959 959 421.000163904 421.000163904 1 0 0 0 0
+240	46428 23 927 927 421.0001576 421.0001576 1 0 0 0 0
+245	46451 33 959 959 421.000163904 421.000163904 1 105250040 105250040 105250040 1.1077570920002e+16
+244	46484 25 959 959 421.000163904 421.000163904 1 0 0 0 0
+243	46509 23 927 927 421.0001576 421.0001576 1 0 0 0 0
+241	46532 26 927 927 421.0001576 421.0001576 1 7504 7504 7504 56310016
+242	46558 26 927 927 421.0001576 421.0001576 1 7504 7504 7504 56310016
+vector 247 Network.FTP.tcp.conn-24 tcpRcvQueueBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 248 Network.FTP.tcp.conn-24 rcvAdv:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 249 Network.FTP.tcp.conn-24 rcvWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 250 Network.FTP.tcp.conn-24 sndAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 251 Network.FTP.tcp.conn-24 rcvSeq:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 252 Network.FTP.tcp.conn-24 rcvAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 253 Network.FTP.tcp.conn-24 tcpRcvPayloadBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+253	47425 25 995 995 441.000170208 441.000170208 1 0 0 0 0
+247	47450 25 963 963 441.000163904 441.000163904 1 0 0 0 0
+252	47475 33 995 995 441.000170208 441.000170208 1 110250041 110250041 110250041 1.2155071540502e+16
+251	47508 25 995 995 441.000170208 441.000170208 1 0 0 0 0
+250	47533 25 963 963 441.000163904 441.000163904 1 0 0 0 0
+248	47558 28 963 963 441.000163904 441.000163904 1 7504 7504 7504 56310016
+249	47586 28 963 963 441.000163904 441.000163904 1 7504 7504 7504 56310016
+vector 254 Network.FTP.tcp.conn-25 tcpRcvQueueBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 255 Network.FTP.tcp.conn-25 rcvAdv:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 256 Network.FTP.tcp.conn-25 rcvWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 257 Network.FTP.tcp.conn-25 sndAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 258 Network.FTP.tcp.conn-25 rcvSeq:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 259 Network.FTP.tcp.conn-25 rcvAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 260 Network.FTP.tcp.conn-25 tcpRcvPayloadBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+260	48455 26 1031 1031 461.000176512 461.000176512 1 0 0 0 0
+254	48481 25 999 999 461.000170208 461.000170208 1 0 0 0 0
+259	48506 34 1031 1031 461.000176512 461.000176512 1 115250043 115250043 115250043 1.3282572411502e+16
+258	48540 26 1031 1031 461.000176512 461.000176512 1 0 0 0 0
+257	48566 25 999 999 461.000170208 461.000170208 1 0 0 0 0
+255	48591 28 999 999 461.000170208 461.000170208 1 7504 7504 7504 56310016
+256	48619 28 999 999 461.000170208 461.000170208 1 7504 7504 7504 56310016
+vector 261 Network.FTP.tcp.conn-26 tcpRcvQueueBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 262 Network.FTP.tcp.conn-26 rcvAdv:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 263 Network.FTP.tcp.conn-26 rcvWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 264 Network.FTP.tcp.conn-26 sndAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 265 Network.FTP.tcp.conn-26 rcvSeq:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 266 Network.FTP.tcp.conn-26 rcvAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 267 Network.FTP.tcp.conn-26 tcpRcvPayloadBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+267	49488 25 1109 1109 481.00018912 481.00018912 1 0 0 0 0
+261	49513 26 1035 1035 481.000176512 481.000176512 1 0 0 0 0
+266	49539 33 1109 1109 481.00018912 481.00018912 1 120250045 120250045 120250045 1.4460073322502e+16
+265	49572 25 1109 1109 481.00018912 481.00018912 1 0 0 0 0
+264	49597 26 1035 1035 481.000176512 481.000176512 1 0 0 0 0
+262	49623 29 1035 1035 481.000176512 481.000176512 1 7504 7504 7504 56310016
+263	49652 29 1035 1035 481.000176512 481.000176512 1 7504 7504 7504 56310016
+vector 268 Network.FTP.tcp.conn-27 tcpRcvQueueBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 269 Network.FTP.tcp.conn-27 rcvAdv:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 270 Network.FTP.tcp.conn-27 rcvWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 271 Network.FTP.tcp.conn-27 sndAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 272 Network.FTP.tcp.conn-27 rcvSeq:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 273 Network.FTP.tcp.conn-27 rcvAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 274 Network.FTP.tcp.conn-27 tcpRcvPayloadBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+274	50522 26 1145 1145 501.000195424 501.000195424 1 0 0 0 0
+268	50548 25 1113 1113 501.00018912 501.00018912 1 0 0 0 0
+273	50573 34 1145 1145 501.000195424 501.000195424 1 125250048 125250048 125250048 1.5687574524002e+16
+272	50607 26 1145 1145 501.000195424 501.000195424 1 0 0 0 0
+271	50633 25 1113 1113 501.00018912 501.00018912 1 0 0 0 0
+269	50658 28 1113 1113 501.00018912 501.00018912 1 7504 7504 7504 56310016
+270	50686 28 1113 1113 501.00018912 501.00018912 1 7504 7504 7504 56310016
+vector 275 Network.FTP.tcp.conn-28 tcpRcvQueueBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 276 Network.FTP.tcp.conn-28 rcvAdv:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 277 Network.FTP.tcp.conn-28 rcvWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 278 Network.FTP.tcp.conn-28 sndAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 279 Network.FTP.tcp.conn-28 rcvSeq:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 280 Network.FTP.tcp.conn-28 rcvAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 281 Network.FTP.tcp.conn-28 tcpRcvPayloadBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+281	51555 26 1181 1181 521.000201728 521.000201728 1 0 0 0 0
+275	51581 26 1149 1149 521.000195424 521.000195424 1 0 0 0 0
+280	51607 34 1181 1181 521.000201728 521.000201728 1 130250049 130250049 130250049 1.6965075264502e+16
+279	51641 26 1181 1181 521.000201728 521.000201728 1 0 0 0 0
+278	51667 26 1149 1149 521.000195424 521.000195424 1 0 0 0 0
+276	51693 29 1149 1149 521.000195424 521.000195424 1 7504 7504 7504 56310016
+277	51722 29 1149 1149 521.000195424 521.000195424 1 7504 7504 7504 56310016
+vector 282 Network.FTP.tcp.conn-29 tcpRcvQueueBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 283 Network.FTP.tcp.conn-29 rcvAdv:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 284 Network.FTP.tcp.conn-29 rcvWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 285 Network.FTP.tcp.conn-29 sndAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 286 Network.FTP.tcp.conn-29 rcvSeq:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 287 Network.FTP.tcp.conn-29 rcvAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 288 Network.FTP.tcp.conn-29 tcpRcvPayloadBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+288	52592 26 1217 1217 541.000208032 541.000208032 1 0 0 0 0
+282	52618 26 1185 1185 541.000201728 541.000201728 1 0 0 0 0
+287	52644 34 1217 1217 541.000208032 541.000208032 1 135250051 135250051 135250051 1.8292576295503e+16
+286	52678 26 1217 1217 541.000208032 541.000208032 1 0 0 0 0
+285	52704 26 1185 1185 541.000201728 541.000201728 1 0 0 0 0
+283	52730 29 1185 1185 541.000201728 541.000201728 1 7504 7504 7504 56310016
+284	52759 29 1185 1185 541.000201728 541.000201728 1 7504 7504 7504 56310016
+vector 289 Network.FTP.tcp.conn-30 tcpRcvQueueBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 290 Network.FTP.tcp.conn-30 rcvAdv:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 291 Network.FTP.tcp.conn-30 rcvWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 292 Network.FTP.tcp.conn-30 sndAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 293 Network.FTP.tcp.conn-30 rcvSeq:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 294 Network.FTP.tcp.conn-30 rcvAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 295 Network.FTP.tcp.conn-30 tcpRcvPayloadBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+295	53629 26 1253 1253 561.000214336 561.000214336 1 0 0 0 0
+289	53655 26 1221 1221 561.000208032 561.000208032 1 0 0 0 0
+294	53681 34 1253 1253 561.000214336 561.000214336 1 140250053 140250053 140250053 1.9670077366503e+16
+293	53715 26 1253 1253 561.000214336 561.000214336 1 0 0 0 0
+292	53741 26 1221 1221 561.000208032 561.000208032 1 0 0 0 0
+290	53767 29 1221 1221 561.000208032 561.000208032 1 7504 7504 7504 56310016
+291	53796 29 1221 1221 561.000208032 561.000208032 1 7504 7504 7504 56310016
+vector 296 Network.FTP.tcp.conn-31 tcpRcvQueueBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 297 Network.FTP.tcp.conn-31 rcvAdv:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 298 Network.FTP.tcp.conn-31 rcvWnd:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 299 Network.FTP.tcp.conn-31 sndAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 300 Network.FTP.tcp.conn-31 rcvSeq:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 301 Network.FTP.tcp.conn-31 rcvAck:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+vector 302 Network.FTP.tcp.conn-31 tcpRcvPayloadBytes:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+302	54666 25 1289 1289 581.00022064 581.00022064 1 0 0 0 0
+296	54691 26 1257 1257 581.000214336 581.000214336 1 0 0 0 0
+301	54717 33 1289 1289 581.00022064 581.00022064 1 145250054 145250054 145250054 2.1097578187003e+16
+300	54750 25 1289 1289 581.00022064 581.00022064 1 0 0 0 0
+299	54775 26 1257 1257 581.000214336 581.000214336 1 0 0 0 0
+297	54801 29 1257 1257 581.000214336 581.000214336 1 7504 7504 7504 56310016
+298	54830 29 1257 1257 581.000214336 581.000214336 1 7504 7504 7504 56310016
+vector 303 Network.client.eth[0].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 304 Network.client.eth[0].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 305 Network.ethernetSwitch.ieee8021q.qTagHeaderChecker droppedDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetDropped)
+attr title "dropped data rate"
+attr unit bps
+vector 306 Network.ethernetSwitch.ieee8021r.rTagHeaderChecker droppedDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetDropped)
+attr title "dropped data rate"
+attr unit bps
+vector 307 Network.HTTP.eth[0].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 308 Network.HTTP.eth[0].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+0	56177 45 0 0 0 0 5 0 0 0 0
+1	56222 45 0 0 0 0 5 0 0 0 0
+2	56267 9 0 0 0 0 1 0 0 0 0
+3	56276 9 0 0 0 0 1 0 0 0 0
+4	56285 9 0 0 0 0 1 0 0 0 0
+5	56294 840 0 1276 0 581.000217488 40 0 0 0 0
+6	57134 840 0 1276 0 581.000217488 40 0 0 0 0
+7	57974 9 0 0 0 0 1 0 0 0 0
+8	57983 9 0 0 0 0 1 0 0 0 0
+9	57992 9 0 0 0 0 1 0 0 0 0
+10	58001 167 0 1047 0 481.000178088 10 0 0 0 0
+11	58168 167 0 1047 0 481.000178088 10 0 0 0 0
+12	58335 877 0 1267 0 581.000215912 40 0 0 0 0
+13	59212 877 0 1267 0 581.000215912 40 0 0 0 0
+14	60089 880 0 1283 0 581.000219064 40 0 0 0 0
+15	60969 880 0 1283 0 581.000219064 40 0 0 0 0
+16	61849 167 0 1049 0 481.000178088 10 0 0 0 0
+17	62016 167 0 1049 0 481.000178088 10 0 0 0 0
+18	62183 869 0 1260 0 581.000214336 40 0 0 0 0
+19	63052 869 0 1260 0 581.000214336 40 0 0 0 0
+20	63921 10 0 0 0 0 1 0 0 0 0
+21	63931 10 0 0 0 0 1 0 0 0 0
+22	63941 10 0 0 0 0 1 0 0 0 0
+23	63951 732 0 1256 0 581.000214336 31 0 30 465 9455
+24	64683 50 0 0 0 0 5 0 0 0 0
+25	64733 50 0 0 0 0 5 0 0 0 0
+26	64783 10 0 0 0 0 1 0 0 0 0
+27	64793 10 0 0 0 0 1 0 0 0 0
+28	64803 10 0 0 0 0 1 0 0 0 0
+33	64813 112 4 1036 1 481.000176512 5 28 28 140 3920
+34	64925 854 5 1259 1 581.000214336 35 28 44 1460 62000
+35	65779 889 6 1260 1 581.000214336 35 368 496 16720 8057600
+36	66668 95162 6 1292 0.1 600 6000 0 8640 167200 988288000
+37	161830 819 6 1260 1 581.000214336 35 0 0 0 0
+38	162649 889 6 1260 1 581.000214336 35 368 496 16720 8057600
+39	163538 95162 6 1292 0.1 600 6000 0 8640 167200 988288000
+40	258700 854 6 1260 1 581.000214336 35 46 62 2090 125900
+41	259554 861 7 1261 1.000000576 581.000214912 35 64 64 2240 143360
+42	260415 861 9 1263 1.000001576 581.000215912 35 64 64 2240 143360
+43	261276 861 9 1263 1.000001576 581.000215912 35 64 64 2240 143360
+44	262137 1727 10 1280 1.000001576 581.000219064 70 46 46 3220 148120
+45	263864 1971 12 1282 1.000001576 581.000219064 80 46 46 3680 169280
+46	265835 127 15 1047 1.000001576 481.000178088 5 512 512 2560 1310720
+47	265962 96097 15 1292 0.1 600 6000 0 5120 25600 131072000
+48	362059 117 15 1047 1.000001576 481.000178088 5 0 0 0 0
+49	362176 127 15 1047 1.000001576 481.000178088 5 512 512 2560 1310720
+50	362303 96097 15 1292 0.1 600 6000 0 5120 25600 131072000
+51	458400 122 15 1047 1.000001576 481.000178088 5 64 64 320 20480
+52	458522 897 16 1267 1.000001576 581.000215912 35 512 512 17920 9175040
+53	459419 95177 16 1292 0.1 600 6000 0 10240 179200 1179648000
+54	554596 827 16 1267 1.000001576 581.000215912 35 0 0 0 0
+55	555423 897 16 1267 1.000001576 581.000215912 35 512 512 17920 9175040
+56	556320 95177 16 1292 0.1 600 6000 0 10240 179200 1179648000
+57	651497 862 16 1267 1.000001576 581.000215912 35 64 64 2240 143360
+58	652359 127 17 1049 1.000001576 481.000178088 5 512 512 2560 1310720
+59	652486 96097 17 1292 0.1 600 6000 0 5120 25600 131072000
+60	748583 117 17 1049 1.000001576 481.000178088 5 0 0 0 0
+61	748700 127 17 1049 1.000001576 481.000178088 5 512 512 2560 1310720
+62	748827 96097 17 1292 0.1 600 6000 0 5120 25600 131072000
+63	844924 122 17 1049 1.000001576 481.000178088 5 64 64 320 20480
+64	845046 122 18 1050 1.000002152 481.000178664 5 64 64 320 20480
+65	845168 864 19 1268 1.000002152 581.000216488 35 64 64 2240 143360
+66	846032 122 20 1052 1.000002152 481.000178664 5 64 64 320 20480
+67	846154 122 24 1056 1.000003152 481.000179664 5 64 64 320 20480
+68	846276 122 24 1056 1.000003152 481.000179664 5 64 64 320 20480
+69	846398 864 25 1270 1.000003152 581.000217488 35 64 64 2240 143360
+70	847262 864 25 1270 1.000003152 581.000217488 35 64 64 2240 143360
+71	848126 122 26 1058 1.000003152 481.000179664 5 64 64 320 20480
+72	848248 122 26 1058 1.000003152 481.000179664 5 64 64 320 20480
+73	848370 122 27 1059 1.000003152 481.000179664 5 46 46 230 10580
+74	848492 864 28 1271 1.000003152 581.000217488 35 46 46 1610 74060
+75	849356 122 29 1061 1.000003152 481.000179664 5 46 46 230 10580
+76	849478 122 31 1063 1.000003152 481.000179664 5 28 28 140 3920
+77	849600 864 33 1275 1.000003152 581.000217488 35 28 40 1340 51920
+78	850464 900 34 1276 1.000003152 581.000217488 35 368 464 15760 7136000
+79	851364 95372 34 1292 0.1 600 6000 0 8320 157600 884352000
+80	946736 830 34 1276 1.000003152 581.000217488 35 0 0 0 0
+81	947566 900 34 1276 1.000003152 581.000217488 35 368 464 15760 7136000
+82	948466 95372 34 1292 0.1 600 6000 0 8320 157600 884352000
+83	1043838 865 34 1276 1.000003152 581.000217488 35 46 58 1970 111500
+84	1044703 865 35 1277 1.000003728 581.000218064 35 64 64 2240 143360
+85	1045568 865 37 1279 1.000004728 581.000219064 35 64 64 2240 143360
+86	1046433 865 37 1279 1.000004728 581.000219064 35 64 64 2240 143360
+87	1047298 900 41 1283 1.000004728 581.000219064 35 512 512 17920 9175040
+88	1048198 95377 41 1292 0.1 600 6000 0 10240 179200 1179648000
+89	1143575 830 41 1283 1.000004728 581.000219064 35 0 0 0 0
+90	1144405 900 41 1283 1.000004728 581.000219064 35 512 512 17920 9175040
+91	1145305 95377 41 1292 0.1 600 6000 0 10240 179200 1179648000
+92	1240682 865 41 1283 1.000004728 581.000219064 35 64 64 2240 143360
+93	1241547 865 42 1284 1.000005304 581.00021964 35 64 64 2240 143360
+94	1242412 865 44 1286 1.000006304 581.00022064 35 64 64 2240 143360
+95	1243277 865 44 1286 1.000006304 581.00022064 35 64 64 2240 143360
+96	1244142 865 45 1287 1.000006304 581.00022064 35 46 46 1610 74060
+303	1245007 105702 1292 1292 0.1 600 6000 0 0 0 0
+304	1350709 105702 1292 1292 0.1 600 6000 0 0 0 0
+305	1456411 105702 1292 1292 0.1 600 6000 0 0 0 0
+306	1562113 105702 1292 1292 0.1 600 6000 0 0 0 0
+307	1667815 105702 1292 1292 0.1 600 6000 0 0 0 0
+308	1773517 105702 1292 1292 0.1 600 6000 0 0 0 0
+
